@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 /*
@@ -73,9 +74,9 @@ public class EmployeeController {
         return "updateEmployee";
     }
     //view employee @get og @post
-    @GetMapping("/view")
-    public String viewEmployees(){
-        return "ViewEmployees";
+    @GetMapping("/")
+    public ResponseEntity<List<EmployeeDTO>> viewAllEmployees(){
+        return ResponseEntity.ok().body(DtoFactory.fromEmployees(service.getAll()));
     }
 
 }
