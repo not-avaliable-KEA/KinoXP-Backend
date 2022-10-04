@@ -24,7 +24,7 @@ public class KinoXpBackendApplication {
         SpringApplication.run(KinoXpBackendApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
 
@@ -50,7 +50,7 @@ public class KinoXpBackendApplication {
 
             log.info("Application ready");
         };
-    }
+    }*/
     @Bean
     public static ModelMapper modelMapper() {
         return new ModelMapper();
