@@ -45,6 +45,17 @@ public class EmployeeService {
         return repository.findAll();
     }
 
+    public Boolean delete(long id) {
+        Optional<Employee> optionalEmployee = get(id);
+
+        if (optionalEmployee.isPresent()) {
+            repository.delete(optionalEmployee.get());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     private boolean checkPassword(String userPassword, String userSalt, String passwordToCheck) {
         String hashToCheck;
