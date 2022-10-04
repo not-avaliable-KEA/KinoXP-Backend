@@ -45,6 +45,17 @@ public class EmployeeService {
         return repository.findAll();
     }
 
+    public Employee update(Employee employee) {
+
+        Optional<Employee> optionalEmployee = get(employee.getId());
+
+        // check if present, return null if not
+        if (optionalEmployee.isEmpty()) return null;
+
+        // update values
+        return repository.save(employee);
+    }
+
     public Boolean delete(long id) {
         Optional<Employee> optionalEmployee = get(id);
 
