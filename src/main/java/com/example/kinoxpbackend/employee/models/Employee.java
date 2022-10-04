@@ -21,4 +21,19 @@ public class Employee {
     private String role;
     private String email;
     private String telefon;
+
+    // add limits
+    private String username;
+    private String password;
+    private String salt;
+
+    public Employee(String name, String role, String email, String telefon,String username, String password, String salt) {
+        this.name = name;
+        this.role = role;
+        this.email = email;
+        this.telefon = telefon;
+        this.username = username;
+        this.password = password;
+        this.salt = salt;
+    }
 }
