@@ -30,6 +30,8 @@ public class KinoXpBackendApplication {
 
             service.create(new Employee("name", "role", "email", "phone",
                     "username", "password", "salt"));
+            service.create(new Employee("name", "role", "email", "phone",
+                    "username2", "password", "salt"));
 
             Optional<Employee> optional = service.get(1);
             if (optional.isPresent()) {
