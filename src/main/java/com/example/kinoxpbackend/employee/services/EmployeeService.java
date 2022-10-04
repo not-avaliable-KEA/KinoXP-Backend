@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class EmployeeService {
@@ -33,6 +35,14 @@ public class EmployeeService {
                 salt);
         //String name, String role, String email, String telefon, String password, String salt
         return repository.save(newUser);
+    }
+
+    public Optional<Employee> get(long id) {
+        return repository.findById(id);
+    }
+
+    public List<Employee> getAll() {
+        return repository.findAll();
     }
 
 
