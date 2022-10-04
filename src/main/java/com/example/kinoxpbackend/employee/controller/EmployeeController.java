@@ -7,6 +7,7 @@ import com.example.kinoxpbackend.employee.repositories.EmployeeRepository;
 import com.example.kinoxpbackend.employee.services.EmployeeService;
 import com.example.kinoxpbackend.factory.DtoFactory;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 /*
-@Author Sofia Abrahamsen + Lasse Bøgeskov-Jensen
+@Author Sofia Abrahamsen + Lasse Bøgeskov-Jensen + Mathias Eliot Nielsen
  */
 @CrossOrigin
 @RestController
@@ -24,17 +25,24 @@ public class EmployeeController {
 
     private final EmployeeService service;
 
-    public EmployeeController(EmployeeRepository repository, EmployeeService service)
+    public EmployeeController(EmployeeService service)
     {
         this.service = service;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EmployeeDTO>> findAll(){
+        return ResponseEntity.ok().body(DtoFactory.fromEmployees(service.getAll()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDTO> find(@PathVariable("id") Long id) throws ResourceNotFoundException {
         Optional<Employee> item = service.get(id);
+
+        if (item.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
         return ResponseEntity.ok().body(DtoFactory.fromEmployee(item.get()));
     }
-
 
     @PostMapping
     public ResponseEntity<EmployeeDTO> create(@Valid @RequestBody Employee employee){
@@ -55,19 +63,6 @@ public class EmployeeController {
 
         boolean delete = service.delete(id);
         return ResponseEntity.ok().body("{deleted: " + delete + "}");
-    }
-
-
-    //update employee @get og @post
-    @GetMapping("/update")
-    public String updateEmployee(){
-        return "updateEmployee";
-    }
-
-    //view employee @get og @post
-    @GetMapping()
-    public ResponseEntity<List<EmployeeDTO>> viewAllEmployees(){
-        return ResponseEntity.ok().body(DtoFactory.fromEmployees(service.getAll()));
     }
 
 }
