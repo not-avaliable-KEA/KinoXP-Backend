@@ -3,7 +3,6 @@ package com.example.kinoxpbackend.employee.controller;
 
 import com.example.kinoxpbackend.employee.DTOs.EmployeeDTO;
 import com.example.kinoxpbackend.employee.models.Employee;
-import com.example.kinoxpbackend.employee.repositories.EmployeeRepository;
 import com.example.kinoxpbackend.employee.services.EmployeeService;
 import com.example.kinoxpbackend.factory.DtoFactory;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -20,7 +19,7 @@ import java.util.Optional;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
 
     private final EmployeeService service;
