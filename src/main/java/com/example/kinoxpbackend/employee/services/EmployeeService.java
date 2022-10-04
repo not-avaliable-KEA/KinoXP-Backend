@@ -18,7 +18,7 @@ public class EmployeeService {
     private final Random random = new Random();
 
 
-    public Employee createEmployee(String name, String role, String email, String telephone,
+    public Employee create(String name, String role, String email, String telephone,
                                    String username, String password) {
         String salt = generateSalt();
         String pepper = generatePepper();
