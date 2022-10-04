@@ -3,6 +3,7 @@ package com.example.kinoxpbackend.employee.services;
 import com.example.kinoxpbackend.employee.models.Employee;
 import com.example.kinoxpbackend.employee.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+@Service
 public class EmployeeService {
 
     @Autowired
