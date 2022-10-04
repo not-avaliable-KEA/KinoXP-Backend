@@ -22,21 +22,16 @@ public class EmployeeService {
     private final Random random = new Random();
 
 
-    public Employee create(String name, String role, String email, String telephone,
-                                   String username, String password) {
+    // might need to be changed to take a customer
+    public Employee create(Employee employee) {
         String salt = generateSalt();
         String pepper = generatePepper();
 
-        Employee newUser = new Employee(
-                name,
-                role,
-                email,
-                telephone,
-                username,
-                hashPassword(pepper, password, salt),
-                salt);
+        employee.setSalt(salt);
+        employee.setPassword(hashPassword(pepper, employee.getPassword(), salt));
+
         //String name, String role, String email, String telefon, String password, String salt
-        return repository.save(newUser);
+        return repository.save(employee);
     }
 
     public Optional<Employee> get(long id) {
@@ -47,12 +42,15 @@ public class EmployeeService {
         return repository.findAll();
     }
 
+    //updates employees
     public Employee update(Employee employee) {
 
         Optional<Employee> optionalEmployee = get(employee.getId());
 
         // check if present, return null if not
         if (optionalEmployee.isEmpty()) return null;
+
+        // checks for
 
         // update values
         return repository.save(employee);

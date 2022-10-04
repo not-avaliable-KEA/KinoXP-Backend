@@ -25,9 +25,27 @@ public class KinoXpBackendApplication {
     @Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
-            service.create("name", "role", "email", "phone",
-                    "username", "password");
-            log.info("Created starting employee");
+
+            service.create(new Employee("name", "role", "email", "phone",
+                    "username", "password", "salt"));
+
+            Optional<Employee> optional = service.get(1);
+            if (optional.isPresent()) {
+                log.info("found employee");
+                optional.get().setName("Changed");
+                optional.get().setSalt(null);
+                optional.get().setPassword(null);
+
+                System.out.println("before = " + optional.get().getSalt());
+                System.out.println("after = " + service.update(optional.get()).getSalt());
+
+            } else {
+                log.error("did not find employee");
+            }
+
+            System.out.println(service.get(1).get().getName());
+
+            log.info("Application ready");
         };
     }
 }
