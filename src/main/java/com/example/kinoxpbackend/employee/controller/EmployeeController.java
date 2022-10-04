@@ -17,22 +17,23 @@ import javax.validation.Valid;
 @RequestMapping("/employee")
 public class EmployeeController {
     EmployeeService service = new EmployeeService();
-    //create employee
+    Employee employee = new Employee();
+    //create employee @get og @post
     @GetMapping("/create")
     public String createEmployee(){
         return "createEmployee";
     }
-    //delete employee
+    //delete employee @get og @post
     @GetMapping("/delete")
     public String deleteEmployee(){
         return "deleteEmployee";
     }
-    //update employee
+    //update employee @get og @post
     @GetMapping("/update")
     public String updateEmployee(){
         return "updateEmployee";
     }
-    //view employee
+    //view employee @get og @post
     @GetMapping("/view")
     public String viewEmployees(){
         return "ViewEmployees";
