@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.employee.controller;
+package com.example.kinoxpbackend.employee.controllers;
 
 
 import com.example.kinoxpbackend.employee.DTOs.EmployeeDTO;
