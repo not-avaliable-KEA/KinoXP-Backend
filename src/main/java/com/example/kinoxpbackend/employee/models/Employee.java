@@ -36,4 +36,13 @@ public class Employee {
         this.password = password;
         this.salt = salt;
     }
+
+    public Employee update(Employee employee) {
+        this.name = employee.getName();
+        this.role = employee.getRole();
+        this.email = employee.getEmail();
+        this.telefon = employee.getTelefon();
+        this.username = employee.getUsername();
+        return this;
+    }
 }
