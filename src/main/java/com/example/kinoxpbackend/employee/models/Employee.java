@@ -22,7 +22,7 @@ public class Employee {
     private String email;
     private String telefon;
 
-    // add limits
+    @Column(unique=true)
     private String username;
     private String password;
     private String salt;
