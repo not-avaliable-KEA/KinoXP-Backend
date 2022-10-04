@@ -35,8 +35,7 @@ public class KinoXpBackendApplication {
             if (optional.isPresent()) {
                 log.info("found employee");
                 optional.get().setName("Changed");
-                optional.get().setSalt(null);
-                optional.get().setPassword(null);
+                optional.get().setPassword("");
 
                 System.out.println("before = " + optional.get().getSalt());
                 System.out.println("after = " + service.update(optional.get()).getSalt());

@@ -42,7 +42,7 @@ public class EmployeeService {
         return repository.findAll();
     }
 
-    //updates employees
+    //updates employees, if employee has password, then it is also updated
     public Employee update(Employee employee) {
 
         Optional<Employee> optionalEmployee = get(employee.getId());
@@ -50,10 +50,20 @@ public class EmployeeService {
         // check if present, return null if not
         if (optionalEmployee.isEmpty()) return null;
 
-        // checks for
+        // checks if password needs changing
+        if (employee.getPassword() == null || employee.getPassword().isEmpty()) {
+            optionalEmployee.get().update(employee);
+        } else {
+            optionalEmployee.get().update(employee);
+            optionalEmployee.get().setSalt(generateSalt());
+            optionalEmployee.get().setPassword(
+                    hashPassword(generatePepper(),
+                            employee.getPassword(),
+                            optionalEmployee.get().getSalt()));
+        }
 
         // update values
-        return repository.save(employee);
+        return repository.save(optionalEmployee.get());
     }
 
     public Boolean delete(long id) {
