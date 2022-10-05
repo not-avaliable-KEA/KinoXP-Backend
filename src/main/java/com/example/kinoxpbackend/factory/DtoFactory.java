@@ -44,7 +44,7 @@ public class DtoFactory
         return modelMapper.map(movie, MovieDTO.class);
     }
 
-    public static List<MovieDTO> fromMMovie(List<Movie> movies){
+    public static List<MovieDTO> fromMovies(List<Movie> movies){
         return movies.stream().map(movie -> modelMapper.map(movie, MovieDTO.class))
                 .collect(Collectors.toList());
 }
