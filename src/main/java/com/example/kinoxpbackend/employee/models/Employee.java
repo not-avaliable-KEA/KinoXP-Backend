@@ -20,18 +20,18 @@ public class Employee {
     private String name;
     private String role;
     private String email;
-    private String telefon;
+    private String telephone;
 
     @Column(unique=true)
     private String username;
     private String password;
     private String salt;
 
-    public Employee(String name, String role, String email, String telefon,String username, String password, String salt) {
+    public Employee(String name, String role, String email, String telephone,String username, String password, String salt) {
         this.name = name;
         this.role = role;
         this.email = email;
-        this.telefon = telefon;
+        this.telephone = telephone;
         this.username = username;
         this.password = password;
         this.salt = salt;
@@ -41,7 +41,7 @@ public class Employee {
         this.name = employee.getName();
         this.role = employee.getRole();
         this.email = employee.getEmail();
-        this.telefon = employee.getTelefon();
+        this.telephone = employee.getTelephone();
         this.username = employee.getUsername();
         return this;
     }
