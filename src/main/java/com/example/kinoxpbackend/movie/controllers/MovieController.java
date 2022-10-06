@@ -28,6 +28,12 @@ public class MovieController {
         return ResponseEntity.ok().body(DtoFactory.fromMovies(service.getAll()));
     }
 
+    @GetMapping(params = "genre")
+    public ResponseEntity<List<MovieDTO>> findAllByGenre(@RequestParam String genre){
+        System.out.println(genre);
+        return ResponseEntity.ok().body(DtoFactory.fromMovies(service.getAllByGenre(genre)));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<MovieDTO> find(@PathVariable("id") Long id) throws ResourceNotFoundException {
         Optional<Movie> item = service.get(id);

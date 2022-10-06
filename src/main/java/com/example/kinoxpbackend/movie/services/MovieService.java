@@ -26,6 +26,9 @@ public class MovieService {
     public List<Movie> getAll(){
         return repository.findAll();
     }
+    public List<Movie> getAllByGenre(String genre){
+        return repository.findAllByGenre(genre);
+    }
 
     public Movie update(Movie movie){
 
