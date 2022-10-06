@@ -36,8 +36,7 @@ public class Movie {
     @Column(name = "AGELIMIT")
     private int ageLimit;
 
-    public Movie(Long id, String name, String genre, Time length, String actors, String director, int ageLimit) {
-        this.id = id;
+    public Movie(String name, String genre, Time length, String actors, String director, int ageLimit) {
         this.name = name;
         this.genre = genre;
         this.length = length;

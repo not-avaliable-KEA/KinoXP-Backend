@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 /*
-@Author Sofia Abrahamsen + Lasse Bøgeskov-Jensen + Mathias Eliot Nielsen
+@Author Sofia Abraham sen + Lasse Bøgeskov-Jensen + Mathias Eliot Nielsen
  */
 @CrossOrigin
 @RestController
