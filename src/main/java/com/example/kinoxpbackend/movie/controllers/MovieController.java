@@ -37,9 +37,8 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<MovieDTO> create(@Valid @RequestBody Movie movie, @PathVariable("id") Long id){
-        movie.setId(id);
-        Movie item = service.update(movie);
+    public ResponseEntity<MovieDTO> create(@Valid @RequestBody Movie movie){
+        Movie item = service.create(movie);
         return  ResponseEntity.ok().body(DtoFactory.fromMovie(item));
     }
 
