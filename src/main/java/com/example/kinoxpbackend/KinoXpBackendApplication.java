@@ -4,6 +4,8 @@ import com.example.kinoxpbackend.employee.models.Employee;
 import com.example.kinoxpbackend.employee.services.EmployeeService;
 import com.example.kinoxpbackend.movie.models.Movie;
 import com.example.kinoxpbackend.movie.services.MovieService;
+import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
+import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +14,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -26,7 +25,7 @@ public class KinoXpBackendApplication {
         SpringApplication.run(KinoXpBackendApplication.class, args);
     }
 
-    /*@Bean
+   /* @Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
 
@@ -52,9 +51,9 @@ public class KinoXpBackendApplication {
 
             log.info("Application ready");
         };
-    }*/
+    }
 
-    /*@Bean
+  *//*  @Bean
     public CommandLineRunner importDataMovie(MovieService service) {
         return (args) -> {
 
@@ -75,10 +74,33 @@ public class KinoXpBackendApplication {
             System.out.println(service.get(1).get().getName());
 
             log.info("Application ready");
-        };
-    }*/
+        };*//*
+    }
+*/
     @Bean
     public static ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
+
+   /* @Bean
+    public CommandLineRunner importDataMovieTheatre(MovieTheaterService service) {
+        return (args) -> {
+            service.create(new MovieTheater("Bio 1 ", 25, 16));
+            service.create(new MovieTheater("Bio 2 ", 20, 12));
+
+
+            Optional<MovieTheater> optional = service.get(1);
+            if (optional.isPresent()) {
+                log.info("found Movie theatre");
+            } else {
+                log.info("Did not find the movie theatre");
+            }
+
+            System.out.println(service.getAll());
+
+            log.info("Application ready");
+        };
+
+    }*/
 }

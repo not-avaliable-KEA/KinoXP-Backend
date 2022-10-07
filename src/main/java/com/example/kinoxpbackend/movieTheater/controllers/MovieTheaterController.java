@@ -53,7 +53,7 @@ public class MovieTheaterController {
     }
 
 
-    @DeleteMapping("/{id)")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         service.get(id).orElseThrow(() -> new ResourceNotFoundException("MovieTheatre %d not found".formatted(id)));
 
