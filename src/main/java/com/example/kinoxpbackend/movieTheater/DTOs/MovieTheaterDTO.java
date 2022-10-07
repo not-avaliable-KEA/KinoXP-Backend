@@ -10,5 +10,8 @@ import lombok.Setter;
 @Setter
 public class MovieTheaterDTO {
 
+    private String name;
+    private int rows;
+    private int columns;
 
 }
