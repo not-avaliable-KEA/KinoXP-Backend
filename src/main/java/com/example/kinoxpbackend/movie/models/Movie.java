@@ -36,13 +36,19 @@ public class Movie {
     @Column(name = "AGELIMIT")
     private int ageLimit;
 
-    public Movie(String name, String genre, double length, String actors, String director, int ageLimit) {
+    @Column(name = "DESCRIPTION")
+    @Lob //get a long text in the DB
+    private String description;
+
+    public Movie(String name, String genre, double length, String actors, String director, int ageLimit, String description) {
         this.name = name;
         this.genre = genre;
         this.length = length;
         this.actors = actors;
         this.director = director;
         this.ageLimit = ageLimit;
+        this.description = description;
+
     }
 
     public Movie update(Movie movie){
