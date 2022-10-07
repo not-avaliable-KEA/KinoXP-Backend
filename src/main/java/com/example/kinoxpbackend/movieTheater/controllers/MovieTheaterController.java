@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/movietheatres")
+@RequestMapping("/api/v1/movietheaters")
 public class MovieTheaterController {
 
     private final MovieTheaterService service;
