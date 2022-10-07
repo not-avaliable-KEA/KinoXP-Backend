@@ -15,7 +15,7 @@ public class MovieDTO {
     private Long id;
     private String name;
     private String genre;
-    private Time length;
+    private double length;
     private String actors;
     private String director;
     private int ageLimit;
