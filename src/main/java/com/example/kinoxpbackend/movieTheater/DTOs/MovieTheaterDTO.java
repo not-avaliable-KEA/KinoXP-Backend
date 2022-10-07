@@ -11,7 +11,7 @@ import lombok.Setter;
 public class MovieTheaterDTO {
 
     private String name;
-    private int rows;
-    private int columns;
+    private int numberOfRows;
+    private int numberOfColumns;
 
 }
