@@ -60,8 +60,12 @@ public class KinoXpBackendApplication {
 
             service.create(new Movie("name1", "Genre", null, "actors",
                     "director", 13));
-            service.create(new Movie("name2", "Genre", null, "actors",
+            service.create(new Movie("name2", "Fantasy", null, "actors",
                     "director", 14));
+            service.create(new Movie("name3", "Horror", null, "actors",
+                    "director", 15));
+            service.create(new Movie("name4", "Romance", null, "actors",
+                    "director", 16));
 
             Optional<Movie> optional = service.get(1);
             if (optional.isPresent()) {
