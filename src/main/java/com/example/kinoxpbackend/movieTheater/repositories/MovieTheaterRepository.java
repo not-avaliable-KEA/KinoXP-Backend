@@ -1,4 +1,8 @@
 package com.example.kinoxpbackend.movieTheater.repositories;
 
-public class MovieTheaterRepository {
+import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MovieTheaterRepository extends JpaRepository<MovieTheater, Long> {
+
 }
