@@ -25,6 +25,7 @@ public class KinoXpBackendApplication {
         SpringApplication.run(KinoXpBackendApplication.class, args);
     }
 
+
    /* @Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
@@ -53,14 +54,19 @@ public class KinoXpBackendApplication {
         };
     }
 
-  *//*  @Bean
+
+ @Bean
     public CommandLineRunner importDataMovie(MovieService service) {
         return (args) -> {
 
-            service.create(new Movie("name1", "Genre", null, "actors",
+            service.create(new Movie("name1", "Genre", 1.2, "actors",
                     "director", 13));
-            service.create(new Movie("name2", "Genre", null, "actors",
+            service.create(new Movie("name2", "Fantasy", 1.3, "actors",
                     "director", 14));
+            service.create(new Movie("name3", "Horror", 1.4, "actors",
+                    "director", 15));
+            service.create(new Movie("name4", "Romance", 1.5, "actors",
+                    "director", 16));
 
             Optional<Movie> optional = service.get(1);
             if (optional.isPresent()) {
@@ -74,9 +80,11 @@ public class KinoXpBackendApplication {
             System.out.println(service.get(1).get().getName());
 
             log.info("Application ready");
-        };*//*
+
+        };
     }
 */
+
     @Bean
     public static ModelMapper modelMapper() {
         return new ModelMapper();

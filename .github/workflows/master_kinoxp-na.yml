@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'KinoXp-NA'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A0C42B0B233C43519A99542BC2EF6DF5 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_82604351385A49BDB46CAD5F27BAA6E5 }}
           package: '*.jar'

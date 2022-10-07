@@ -25,7 +25,7 @@ public class Movie {
     private String genre;
 
     @Column(name = "LENGTH")
-    private Time length;
+    private double length;
 
     @Column(name = "ACTORS")
     private String actors;
@@ -36,7 +36,7 @@ public class Movie {
     @Column(name = "AGELIMIT")
     private int ageLimit;
 
-    public Movie(String name, String genre, Time length, String actors, String director, int ageLimit) {
+    public Movie(String name, String genre, double length, String actors, String director, int ageLimit) {
         this.name = name;
         this.genre = genre;
         this.length = length;

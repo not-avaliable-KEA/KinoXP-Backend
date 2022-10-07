@@ -56,10 +56,10 @@ public class MovieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
         service.get(id).orElseThrow( () -> new ResourceNotFoundException("Movie %d not found.".formatted(id)));
 
         boolean delete = service.delete(id);
-        return ResponseEntity.ok().body("{deleted: " + delete + "}");
+        return ResponseEntity.ok().body(delete);
     }
 }
