@@ -5,6 +5,8 @@ import com.example.kinoxpbackend.employee.DTOs.EmployeeDTO;
 import com.example.kinoxpbackend.employee.models.Employee;
 import com.example.kinoxpbackend.movie.DTOs.MovieDTO;
 import com.example.kinoxpbackend.movie.models.Movie;
+import com.example.kinoxpbackend.movieTheater.DTOs.MovieTheaterDTO;
+import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
@@ -47,7 +49,18 @@ public class DtoFactory
     public static List<MovieDTO> fromMovies(List<Movie> movies){
         return movies.stream().map(movie -> modelMapper.map(movie, MovieDTO.class))
                 .collect(Collectors.toList());
-}
+    }
+
+    public static MovieTheaterDTO fromMovieTheater(MovieTheater movieTheater)
+    {
+        return modelMapper.map(movieTheater, MovieTheaterDTO.class);
+    }
+
+    public static List<MovieTheaterDTO> fromMovieTheaters(List<MovieTheater> movieTheaters){
+        return movieTheaters.stream()
+                .map(movieTheater -> modelMapper.map(movieTheater, MovieTheaterDTO.class))
+                .collect(Collectors.toList());
+    }
 
 
 
