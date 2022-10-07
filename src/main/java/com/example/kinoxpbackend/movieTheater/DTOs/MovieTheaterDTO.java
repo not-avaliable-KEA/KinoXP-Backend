@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 public class MovieTheaterDTO {
 
+    private long id;
     private String name;
     private int numberOfRows;
     private int numberOfSeats;
