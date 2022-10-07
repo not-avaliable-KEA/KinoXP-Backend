@@ -19,18 +19,18 @@ public class MovieTheater {
 
     private String name;
     private int numberOfRows;
-    private int numberOfColumns;
+    private int numberOfSeats;
 
-    public MovieTheater(String name, int numberOfRows, int numberOfColumns) {
+    public MovieTheater(String name, int numberOfRows, int numberOfSeats) {
         this.name = name;
         this.numberOfRows = numberOfRows;
-        this.numberOfColumns = numberOfColumns;
+        this.numberOfSeats = numberOfSeats;
     }
 
     public MovieTheater update(MovieTheater other) {
         this.name = other.getName();
         this.numberOfRows = other.getNumberOfRows();
-        this.numberOfColumns = other.getNumberOfColumns();
+        this.numberOfSeats = other.getNumberOfSeats();
         return this;
     }
 }

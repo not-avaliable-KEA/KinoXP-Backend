@@ -12,6 +12,6 @@ public class MovieTheaterDTO {
 
     private String name;
     private int numberOfRows;
-    private int numberOfColumns;
+    private int numberOfSeats;
 
 }
