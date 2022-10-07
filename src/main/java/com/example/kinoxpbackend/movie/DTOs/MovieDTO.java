@@ -19,4 +19,5 @@ public class MovieDTO {
     private String actors;
     private String director;
     private int ageLimit;
+    private String description;
 }
