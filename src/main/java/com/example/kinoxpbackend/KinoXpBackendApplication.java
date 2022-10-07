@@ -83,7 +83,7 @@ public class KinoXpBackendApplication {
     }
 
 
-   /* @Bean
+   /*@Bean
     public CommandLineRunner importDataMovieTheatre(MovieTheaterService service) {
         return (args) -> {
             service.create(new MovieTheater("Bio 1 ", 25, 16));

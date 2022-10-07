@@ -18,19 +18,19 @@ public class MovieTheater {
     private Long id;
 
     private String name;
-    private int rows;
-    private int columns;
+    private int numberOfRows;
+    private int numberOfColumns;
 
-    public MovieTheater(String name, int rows, int columns) {
+    public MovieTheater(String name, int numberOfRows, int numberOfColumns) {
         this.name = name;
-        this.rows = rows;
-        this.columns = columns;
+        this.numberOfRows = numberOfRows;
+        this.numberOfColumns = numberOfColumns;
     }
 
     public MovieTheater update(MovieTheater other) {
         this.name = other.getName();
-        this.rows = other.getRows();
-        this.columns = other.getColumns();
+        this.numberOfRows = other.getNumberOfRows();
+        this.numberOfColumns = other.getNumberOfColumns();
         return this;
     }
 }
