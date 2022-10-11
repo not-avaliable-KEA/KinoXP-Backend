@@ -93,6 +93,20 @@ public class EmployeeService {
         }
         return false;
     }
+    public Employee checkLogin(Employee employee){
+        Optional<Employee> optionalEmployee = repository.getSingleEntityByUsername(employee.getUsername());
+
+        if(optionalEmployee.isEmpty()) return null;
+
+        if (checkPassword(
+                optionalEmployee.get().getPassword(),
+                optionalEmployee.get().getSalt(),
+                employee.getPassword())) {
+            return optionalEmployee.get();
+        } else {
+            return null;
+        }
+    }
 
     private String generatePepper() {
         return String.valueOf(
@@ -143,22 +157,4 @@ public class EmployeeService {
         }
         return hexString.toString();
     }
-
-    public Employee login(String userName, String password) {
-        //get the user from database
-
-        Employee employee = repository.getSingleEntityByUsername(userName);
-
-        if (employee == null) {
-            return null;
-        }
-
-        if (checkPassword(employee.getPassword(), employee.getSalt(), password)) {
-            return employee;
-        } else {
-            return null;
-
-        }
-    }
-
 }

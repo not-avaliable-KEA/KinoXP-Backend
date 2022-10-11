@@ -67,26 +67,18 @@ public class EmployeeController {
     }
 
     @PostMapping("/login")
-    public String index(HttpSession session, @RequestBody Employee employee){
-        if(employee != null){
-            session.setAttribute("userName", employee.getName());
-            session.setAttribute("loginSuccess", "succes");
-
-            return "redirect:/";
-
-        }else{
-            session.setAttribute("loginSuccess", "fail");
-            return "redirect:/";
+    public ResponseEntity<Boolean> index(HttpSession session, @RequestBody Employee employee){
+        Employee checked = service.checkLogin(employee);
+        if (checked == null){
+            return ResponseEntity.ok().body(false);
         }
-
+        session.setAttribute("username", employee.getUsername());
+        return ResponseEntity.ok().body(true);
     }
 
-    @GetMapping("/logOut")
+    @GetMapping("/logout")
     public String logOut(HttpSession session){
         session.invalidate();
         return "redirect:/";
     }
-
-
-
 }
