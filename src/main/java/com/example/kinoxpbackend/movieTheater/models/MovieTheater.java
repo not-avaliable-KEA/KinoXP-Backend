@@ -1,10 +1,13 @@
 package com.example.kinoxpbackend.movieTheater.models;
 
+import com.example.kinoxpbackend.movieListing.models.MovieListing;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="MovieTheaters")
@@ -20,6 +23,11 @@ public class MovieTheater {
     private String name;
     private int numberOfRows;
     private int numberOfSeats;
+
+    @JsonBackReference
+    //JSONbackreference tager ikke en listen med movielistings,
+    @OneToMany(mappedBy = "movieTheater")
+    private List<MovieListing> movieListings;
 
     public MovieTheater(String name, int numberOfRows, int numberOfSeats) {
         this.name = name;
