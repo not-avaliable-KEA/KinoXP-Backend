@@ -9,7 +9,9 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +46,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDTO> create(@Valid @RequestBody Employee employee){
+    public ResponseEntity<EmployeeDTO> create(@Valid @RequestBody Employee employee, HttpSession session){
             Employee item = service.create(employee);
             return ResponseEntity.ok().body(DtoFactory.fromEmployee(item));
     }
@@ -63,5 +65,28 @@ public class EmployeeController {
         boolean delete = service.delete(id);
         return ResponseEntity.ok().body(delete);
     }
+
+    @PostMapping("/login")
+    public String index(HttpSession session, @RequestBody Employee employee){
+        if(employee != null){
+            session.setAttribute("userName", employee.getName());
+            session.setAttribute("loginSuccess", "succes");
+
+            return "redirect:/";
+
+        }else{
+            session.setAttribute("loginSuccess", "fail");
+            return "redirect:/";
+        }
+
+    }
+
+    @GetMapping("/logOut")
+    public String logOut(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
+
+
 
 }

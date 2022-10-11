@@ -101,7 +101,7 @@ public class EmployeeService {
     }
 
     /**
-     *  generates a random 16 character string, from 94 possible characters
+     * generates a random 16 character string, from 94 possible characters
      */
     private String generateSalt() {
         StringBuilder salt = new StringBuilder();
@@ -113,25 +113,24 @@ public class EmployeeService {
     }
 
     /**
-     *  hashes the password, with the salt and pepper added unto it
+     * hashes the password, with the salt and pepper added unto it
      */
     private String hashPassword(String pepper, String password, String salt) {
         MessageDigest digest = null;
-
         try {
             digest = MessageDigest.getInstance("SHA3-256");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
-        byte[] encodedHash = digest.digest((pepper + password + salt).getBytes(StandardCharsets.UTF_8));
+        byte[] encodedHash = digest.digest((pepper + password + salt).getBytes(StandardCharsets.UTF_8));//hvordan forstår vi det byte set, specifikation for sprog.
 
 
         return bytesToHex(encodedHash);
     }
 
     /**
-     *  converts the byte[] into a string
+     * converts the byte[] into a string
      */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -143,6 +142,23 @@ public class EmployeeService {
             hexString.append(hex);
         }
         return hexString.toString();
+    }
+
+    public Employee login(String userName, String password) {
+        //get the user from database
+
+        Employee employee = repository.getSingleEntityByUsername(userName);
+
+        if (employee == null) {
+            return null;
+        }
+
+        if (checkPassword(employee.getPassword(), employee.getSalt(), password)) {
+            return employee;
+        } else {
+            return null;
+
+        }
     }
 
 }
