@@ -4,6 +4,8 @@ import com.example.kinoxpbackend.employee.models.Employee;
 import com.example.kinoxpbackend.employee.services.EmployeeService;
 import com.example.kinoxpbackend.movie.models.Movie;
 import com.example.kinoxpbackend.movie.services.MovieService;
+import com.example.kinoxpbackend.movieListing.models.MovieListing;
+import com.example.kinoxpbackend.movieListing.service.MovieListingService;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
 import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
 import org.modelmapper.ModelMapper;
@@ -14,6 +16,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -52,9 +58,9 @@ public class KinoXpBackendApplication {
 
             log.info("Application ready");
         };
-    }
+    }*/
 
-
+/*
  @Bean
     public CommandLineRunner importDataMovie(MovieService service) {
         return (args) -> {
@@ -82,16 +88,15 @@ public class KinoXpBackendApplication {
             log.info("Application ready");
 
         };
-    }
-*/
-
+    }*/
     @Bean
     public static ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
+    /*
 
-   /*@Bean
+   @Bean
     public CommandLineRunner importDataMovieTheatre(MovieTheaterService service) {
         return (args) -> {
             service.create(new MovieTheater("Bio 1 ", 25, 16));
@@ -110,5 +115,17 @@ public class KinoXpBackendApplication {
             log.info("Application ready");
         };
 
-    }*/
+    }
+
+    @Bean
+    public CommandLineRunner importDataFromMovieListings(MovieListingService movieListingServiceservice, MovieService movieService,
+                                                         MovieTheaterService movieTheaterService){
+        return args -> {
+
+            movieListingServiceservice.create(new MovieListing(movieService.get(1).get(), movieTheaterService.get(1).get(), new Date()));
+
+        };
+    }
+
+ */
 }
