@@ -12,7 +12,7 @@ import java.util.Date;
 public class MovieListingDTO {
 
     private Long id;
-    private Movie movie;
-    private MovieTheater movieTheater;
-    private Date date;
+    private Long movieId;
+    private Long movieTheaterId;
+    private String date;
 }
