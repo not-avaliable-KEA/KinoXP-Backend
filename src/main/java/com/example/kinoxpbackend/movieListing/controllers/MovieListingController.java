@@ -1,11 +1,10 @@
 package com.example.kinoxpbackend.movieListing.controllers;
 
 
-import com.example.kinoxpbackend.movie.models.Movie;
+import com.example.kinoxpbackend.factory.DtoFactory;
 import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTO;
 import com.example.kinoxpbackend.movieListing.models.MovieListing;
 import com.example.kinoxpbackend.movieListing.service.MovieListingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +28,16 @@ public class MovieListingController {
     }
 
     @PostMapping
-    public ResponseEntity<MovieListing> create(@Valid @RequestBody MovieListing movieListing) {
-        MovieListing movieListings = service.create(movieListing);
-        return ResponseEntity.ok().body(movieListings);
+    public ResponseEntity<MovieListingDTO> create(@Valid @RequestBody MovieListingDTO movieListingDTO) {
+
+        MovieListing movieListing = DtoFactory.fromMovieListingDTO(movieListingDTO);
+
+        return ResponseEntity.ok().body(DtoFactory.fromMovieListing(service.create(movieListing)));
     }
 
     @GetMapping
-    public ResponseEntity<List<MovieListing>> findALl(){
-        return ResponseEntity.ok().body(service.getAll());
+    public ResponseEntity<List<MovieListingDTO>> findALl(){
+        return ResponseEntity.ok().body(DtoFactory.fromMovieListings(service.getAll()));
     }
 
     @PatchMapping("{id}")
@@ -54,10 +55,6 @@ public class MovieListingController {
         if(item.isEmpty())
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); return ResponseEntity.ok().body(item.get());
     }
-
-
-
-
 
 }
 
