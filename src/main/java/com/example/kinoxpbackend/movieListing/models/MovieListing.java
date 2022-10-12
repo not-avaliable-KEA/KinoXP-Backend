@@ -34,7 +34,7 @@ public class MovieListing {
     @JoinColumn(name = "movie_theater_id", nullable = false)
     private MovieTheater movieTheater;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;
 
     public MovieListing(Movie movie, MovieTheater movieTheater, LocalDateTime date) {
