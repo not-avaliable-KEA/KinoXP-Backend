@@ -31,7 +31,7 @@ public class KinoXpBackendApplication {
         SpringApplication.run(KinoXpBackendApplication.class, args);
     }
 
-
+/*
     @Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
@@ -67,14 +67,19 @@ public class KinoXpBackendApplication {
     public CommandLineRunner importDataMovie(MovieService service) {
         return (args) -> {
 
-            service.create(new Movie("name1", "Genre", 1.2, "actors",
-                    "director", 13, "beskrivelse"));
-            service.create(new Movie("name2", "Fantasy", 1.3, "actors",
-                    "director", 14, "beskrivelse"));
-            service.create(new Movie("name3", "Horror", 1.4, "actors",
-                    "director", 15, "beskrivelse"));
-            service.create(new Movie("name4", "Romance", 1.5, "actors",
-                    "director", 16, "beskrivelse"));
+            service.create(new Movie("Hobbitten: En uventet rejse", "Fantasy", 169, " Martin Freeman, Ian McKellen, Richard Armitage, Andy Serkis",
+                    "Peter Jackson", 11, "A reluctant Hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home, and the gold within it from the dragon Smaug."));
+            service.create(new Movie("Hobbitten: Dragen Smaugs ødemark", "Fantasy", 161, "Ian McKellen, Martin Freeman, Richard Armitage, Ken Stott",
+                    "Peter Jackson", 11, "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."));
+            service.create(new Movie("Hobbitten: Femhæreslaget", "Fantasy", 144, "Ian McKellen, Martin Freeman, Richard Armitage, Cate Blanchett",
+                    "Peter Jackson", 11, "Bilbo and company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness."));
+            service.create(new Movie("Bullet Train", "Action", 127, "Brad Pitt, Joey King, Aaron Taylor-Johnson",
+                    "David Leitch", 15, "Five assassins aboard a swiftly-moving bullet train to find out that their missions have something in common."));
+            service.create(new Movie("Vesper", "Sci-Fi", 114, "Raffiella Chapman, Eddie Marsan, Rosy McEwen, Richard Brakectors",
+                    "Kristina Buozyte, Bruno Samper", 15, "Struggling to survive with her father after the collapse of Earth's ecosystem, 13-year-old Vesper must use her wits, strength and bio-hacking abilities to fight for the future."));
+            service.create(new Movie("Blonde", "Romance", 167, "Ana de Armas, Lily Fisher, Julianne Nicholson, Tygh Runyan",
+                    "Andrew Dominik", 17, "A fictionalized chronicle of the inner life of Marilyn Monroe."));
+
 
             Optional<Movie> optional = service.get(1);
             if (optional.isPresent()) {
