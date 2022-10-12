@@ -90,6 +90,10 @@ public class DtoFactory
                 .collect(Collectors.toList());
     }
 
+    public static MovieTheater fromMovieTheaterDTO(MovieTheaterDTO movieTheaterDTO) {
+        return modelMapper.map(movieTheaterDTO, MovieTheater.class);
+    }
+
     /*
         MovieListing
      */
@@ -129,5 +133,4 @@ public class DtoFactory
         //returnerer movielisting.
         return movieListing;
     }
-
 }
