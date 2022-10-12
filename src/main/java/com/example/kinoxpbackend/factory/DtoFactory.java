@@ -14,6 +14,8 @@ import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +27,9 @@ public class DtoFactory
     private static MovieService movieService;
 
     private static MovieTheaterService movieTheaterService;
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 
     public static void setMovieService(MovieService movieService) {
         DtoFactory.movieService = movieService;
@@ -91,18 +96,19 @@ public class DtoFactory
     }
 
     public static MovieListing fromMovieListingDTO(MovieListingDTO movieListingDTO) {
-    // oprette ny tom movielisting
+        // oprette ny tom movielisting
         MovieListing movieListing = new MovieListing();
 
         // overføre id og date dertil.
         movieListing.setId(movieListingDTO.getId());
-        //movieListing.setDate(Date.from(movieListingDTO.getDate()));
+
+        LocalDateTime dateTime = LocalDateTime.parse(movieListingDTO.getDate(), formatter);
+        movieListing.setDate(dateTime);
 
         // finde movie udefra movie id, og overføre til movielisting.
-
         movieListing.setMovie(movieService.get(movieListingDTO.getMovieId()).get());
 
-        //det samme med movie theater.
+        // gør det samme med movie theater.
         movieListing.setMovieTheater(movieTheaterService.get(movieListingDTO.getMovieTheaterId()).get());
 
         //returnerer movielisting.
