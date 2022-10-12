@@ -25,7 +25,7 @@ public class Employee {
     @Column(unique=true)
     private String username;
     private String password;
-    private String salt;
+    private String salt;//16 random character, som bliver tilføjet til databasen og hashet til password, dvs. password bliver ikke gemt i databasen, hash - matematisk måde at præsenterer et resultalt.  . Peber :
 
     public Employee(String name, String role, String email, String telephone,String username, String password, String salt) {
         this.name = name;

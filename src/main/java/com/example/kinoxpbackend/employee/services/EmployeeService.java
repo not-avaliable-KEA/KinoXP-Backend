@@ -2,6 +2,7 @@ package com.example.kinoxpbackend.employee.services;
 
 import com.example.kinoxpbackend.employee.models.Employee;
 import com.example.kinoxpbackend.employee.repositories.EmployeeRepository;
+import org.hibernate.resource.beans.container.spi.BeanLifecycleStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,6 +94,20 @@ public class EmployeeService {
         }
         return false;
     }
+    public Employee checkLogin(Employee employee){
+        Optional<Employee> optionalEmployee = repository.getSingleEntityByUsername(employee.getUsername());
+
+        if(optionalEmployee.isEmpty()) return null;
+
+        if (checkPassword(
+                optionalEmployee.get().getPassword(),
+                optionalEmployee.get().getSalt(),
+                employee.getPassword())) {
+            return optionalEmployee.get();
+        } else {
+            return null;
+        }
+    }
 
     private String generatePepper() {
         return String.valueOf(
@@ -101,7 +116,7 @@ public class EmployeeService {
     }
 
     /**
-     *  generates a random 16 character string, from 94 possible characters
+     * generates a random 16 character string, from 94 possible characters
      */
     private String generateSalt() {
         StringBuilder salt = new StringBuilder();
@@ -113,25 +128,24 @@ public class EmployeeService {
     }
 
     /**
-     *  hashes the password, with the salt and pepper added unto it
+     * hashes the password, with the salt and pepper added unto it
      */
     private String hashPassword(String pepper, String password, String salt) {
         MessageDigest digest = null;
-
         try {
             digest = MessageDigest.getInstance("SHA3-256");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
-        byte[] encodedHash = digest.digest((pepper + password + salt).getBytes(StandardCharsets.UTF_8));
+        byte[] encodedHash = digest.digest((pepper + password + salt).getBytes(StandardCharsets.UTF_8));//hvordan forstår vi det byte set, specifikation for sprog.
 
 
         return bytesToHex(encodedHash);
     }
 
     /**
-     *  converts the byte[] into a string
+     * converts the byte[] into a string
      */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -144,5 +158,4 @@ public class EmployeeService {
         }
         return hexString.toString();
     }
-
 }

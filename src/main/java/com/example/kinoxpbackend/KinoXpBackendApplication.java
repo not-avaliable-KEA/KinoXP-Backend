@@ -32,7 +32,7 @@ public class KinoXpBackendApplication {
     }
 
 
-   /* @Bean
+    @Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
 
@@ -40,6 +40,8 @@ public class KinoXpBackendApplication {
                     "username", "password", "salt"));
             service.create(new Employee("name", "role", "email", "phone",
                     "username2", "password", "salt"));
+            service.create(new Employee("name", "role", "email", "phone",
+                    "username3", "lort", "salt"));
 
             Optional<Employee> optional = service.get(1);
             if (optional.isPresent()) {
