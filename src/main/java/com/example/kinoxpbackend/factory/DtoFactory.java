@@ -73,6 +73,10 @@ public class DtoFactory
                 .collect(Collectors.toList());
     }
 
+    /*
+        MovieTheater
+     */
+
     public static MovieTheaterDTO fromMovieTheater(MovieTheater movieTheater)
     {
         return modelMapper.map(movieTheater, MovieTheaterDTO.class);
@@ -83,6 +87,10 @@ public class DtoFactory
                 .map(movieTheater -> modelMapper.map(movieTheater, MovieTheaterDTO.class))
                 .collect(Collectors.toList());
     }
+
+    /*
+        MovieListing
+     */
 
     public static MovieListingDTO fromMovieListing(MovieListing movieListing)
     {
