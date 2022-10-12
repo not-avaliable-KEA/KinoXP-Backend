@@ -2,6 +2,7 @@ package com.example.kinoxpbackend.movieTheater.services;
 
 
 
+import com.example.kinoxpbackend.factory.DtoFactory;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
 import com.example.kinoxpbackend.movieTheater.repositories.MovieTheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import java.util.Optional;
 @Service
 public class MovieTheaterService {
 
-
-    @Autowired
     MovieTheaterRepository repository;
+
+    public MovieTheaterService(MovieTheaterRepository repository) {
+        this.repository = repository;
+        DtoFactory.setMovieTheaterService(this);
+    }
 
     public MovieTheater create(MovieTheater movieTheater) {
         return repository.save(movieTheater);

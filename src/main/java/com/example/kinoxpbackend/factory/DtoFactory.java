@@ -5,10 +5,16 @@ import com.example.kinoxpbackend.employee.DTOs.EmployeeDTO;
 import com.example.kinoxpbackend.employee.models.Employee;
 import com.example.kinoxpbackend.movie.DTOs.MovieDTO;
 import com.example.kinoxpbackend.movie.models.Movie;
+import com.example.kinoxpbackend.movie.services.MovieService;
+import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTO;
+import com.example.kinoxpbackend.movieListing.models.MovieListing;
 import com.example.kinoxpbackend.movieTheater.DTOs.MovieTheaterDTO;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
+import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,10 +22,24 @@ public class DtoFactory
 {
     private static ModelMapper modelMapper = KinoXpBackendApplication.modelMapper();
 
+    private static MovieService movieService;
+
+    private static MovieTheaterService movieTheaterService;
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+
+    public static void setMovieService(MovieService movieService) {
+        DtoFactory.movieService = movieService;
+    }
+
+    public static void setMovieTheaterService(MovieTheaterService movieTheaterService) {
+        DtoFactory.movieTheaterService = movieTheaterService;
+    }
 
     /*
-        Employees
-    */
+            Employees
+        */
     public static EmployeeDTO fromEmployee(Employee employee)
     {
         return modelMapper.map(employee, EmployeeDTO.class);
@@ -51,6 +71,14 @@ public class DtoFactory
                 .collect(Collectors.toList());
     }
 
+    public static Movie fromMovieDTO(MovieDTO movieDTO) {
+        return modelMapper.map(movieDTO, Movie.class);
+    }
+
+    /*
+        MovieTheater
+     */
+
     public static MovieTheaterDTO fromMovieTheater(MovieTheater movieTheater)
     {
         return modelMapper.map(movieTheater, MovieTheaterDTO.class);
@@ -62,20 +90,47 @@ public class DtoFactory
                 .collect(Collectors.toList());
     }
 
+    public static MovieTheater fromMovieTheaterDTO(MovieTheaterDTO movieTheaterDTO) {
+        return modelMapper.map(movieTheaterDTO, MovieTheater.class);
+    }
 
+    /*
+        MovieListing
+     */
 
+    public static MovieListingDTO fromMovieListing(MovieListing movieListing) {
+        MovieListingDTO dto = modelMapper.map(movieListing, MovieListingDTO.class);
 
+        LocalDateTime timeUnformated = LocalDateTime.parse(dto.getDate());
 
+        dto.setDate(timeUnformated.format(formatter));
 
+        return dto;
+    }
 
+    public static List<MovieListingDTO> fromMovieListings(List<MovieListing> movieListings){
+        return movieListings.stream()
+                .map(DtoFactory::fromMovieListing)
+                .collect(Collectors.toList());
+    }
 
+    public static MovieListing fromMovieListingDTO(MovieListingDTO movieListingDTO) {
+        // oprette ny tom movieListing
+        MovieListing movieListing = new MovieListing();
 
+        // overføre id og date dertil.
+        movieListing.setId(movieListingDTO.getId());
 
+        LocalDateTime dateTime = LocalDateTime.parse(movieListingDTO.getDate(), formatter);
+        movieListing.setDate(dateTime);
 
+        // finde movie udefra movie id, og overføre til movielisting.
+        movieListing.setMovie(movieService.get(movieListingDTO.getMovieId()).get());
 
+        // gør det samme med movie theater.
+        movieListing.setMovieTheater(movieTheaterService.get(movieListingDTO.getMovieTheaterId()).get());
 
-
-
-
-
+        //returnerer movielisting.
+        return movieListing;
+    }
 }

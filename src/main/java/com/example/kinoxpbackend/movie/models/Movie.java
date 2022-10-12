@@ -1,11 +1,15 @@
 package com.example.kinoxpbackend.movie.models;
 
+import com.example.kinoxpbackend.movieListing.models.MovieListing;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.List;
 
 @Entity
 @Table(name = "MOVIES")
@@ -39,6 +43,10 @@ public class Movie {
     @Column(name = "DESCRIPTION")
     @Lob //get a long text in the DB
     private String description;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "movie")
+    private List<MovieListing> movieListings;
 
     public Movie(String name, String genre, double length, String actors, String director, int ageLimit, String description) {
         this.name = name;

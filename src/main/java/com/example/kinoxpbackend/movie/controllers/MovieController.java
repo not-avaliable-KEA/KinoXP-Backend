@@ -42,16 +42,24 @@ public class MovieController {
         return ResponseEntity.ok().body(DtoFactory.fromMovie(item.get()));
     }
 
+    @GetMapping("/{id}/full")
+    public ResponseEntity<Movie> findWithAllInfo(@PathVariable("id") Long id) throws ResourceNotFoundException {
+        Optional<Movie> item = service.get(id);
+
+        if (item.isEmpty()) return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        return ResponseEntity.ok().body(item.get());
+    }
+
     @PostMapping
-    public ResponseEntity<MovieDTO> create(@Valid @RequestBody Movie movie){
-        Movie item = service.create(movie);
+    public ResponseEntity<MovieDTO> create(@Valid @RequestBody MovieDTO movieDTO){
+        Movie item = service.create(DtoFactory.fromMovieDTO(movieDTO));
         return  ResponseEntity.ok().body(DtoFactory.fromMovie(item));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<MovieDTO> update(@Valid @RequestBody Movie movie, @PathVariable("id") Long id){
-        movie.setId(id);
-        Movie item = service.update(movie);
+    public ResponseEntity<MovieDTO> update(@Valid @RequestBody MovieDTO movieDTO, @PathVariable("id") Long id){
+        movieDTO.setId(id);
+        Movie item = service.update(DtoFactory.fromMovieDTO(movieDTO));
         return ResponseEntity.ok().body(DtoFactory.fromMovie(item));
     }
 

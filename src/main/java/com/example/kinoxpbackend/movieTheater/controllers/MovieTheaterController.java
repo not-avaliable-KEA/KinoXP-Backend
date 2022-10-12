@@ -40,15 +40,15 @@ public class MovieTheaterController {
     }
 
     @PostMapping
-    public ResponseEntity<MovieTheaterDTO> create(@Valid @RequestBody MovieTheater movieTheater) {
-        MovieTheater item = service.create(movieTheater);
+    public ResponseEntity<MovieTheaterDTO> create(@Valid @RequestBody MovieTheaterDTO movieTheaterDTO) {
+        MovieTheater item = service.create(DtoFactory.fromMovieTheaterDTO(movieTheaterDTO));
         return ResponseEntity.ok().body(DtoFactory.fromMovieTheater(item));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<MovieTheaterDTO> update(@Valid @RequestBody MovieTheater movieTheater, @PathVariable("id") Long id) {
-        movieTheater.setId(id);
-        MovieTheater item = service.update(movieTheater);
+    public ResponseEntity<MovieTheaterDTO> update(@Valid @RequestBody MovieTheaterDTO movieTheaterDTO, @PathVariable("id") Long id) {
+        movieTheaterDTO.setId(id);
+        MovieTheater item = service.update(DtoFactory.fromMovieTheaterDTO(movieTheaterDTO));
         return ResponseEntity.ok().body(DtoFactory.fromMovieTheater(item));
     }
 
