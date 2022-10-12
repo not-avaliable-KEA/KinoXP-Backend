@@ -17,8 +17,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,13 +89,13 @@ public class KinoXpBackendApplication {
 
         };
     }*/
+
     @Bean
     public static ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
     /*
-
    @Bean
     public CommandLineRunner importDataMovieTheatre(MovieTheaterService service) {
         return (args) -> {
@@ -122,7 +122,7 @@ public class KinoXpBackendApplication {
                                                          MovieTheaterService movieTheaterService){
         return args -> {
 
-            movieListingServiceservice.create(new MovieListing(movieService.get(1).get(), movieTheaterService.get(1).get(), new Date()));
+            movieListingServiceservice.create(new MovieListing(movieService.get(1).get(), movieTheaterService.get(1).get(), LocalDateTime.now()));
 
         };
     }

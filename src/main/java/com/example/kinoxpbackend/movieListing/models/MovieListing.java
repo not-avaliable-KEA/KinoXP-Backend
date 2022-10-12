@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -34,9 +35,9 @@ public class MovieListing {
     private MovieTheater movieTheater;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDateTime date;
 
-    public MovieListing(Movie movie, MovieTheater movieTheater, Date date) {
+    public MovieListing(Movie movie, MovieTheater movieTheater, LocalDateTime date) {
         this.movie = movie;
         this.movieTheater = movieTheater;
         this.date = date;
