@@ -57,6 +57,11 @@ public class MovieListingController {
         return ResponseEntity.ok().body(DtoFactory.fromMovieListing(movieListingItem));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> update(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(service.delete(id));
+    }
+
 }
 
 
