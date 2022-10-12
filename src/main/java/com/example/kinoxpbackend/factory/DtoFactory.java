@@ -71,6 +71,10 @@ public class DtoFactory
                 .collect(Collectors.toList());
     }
 
+    public static Movie fromMovieDTO(MovieDTO movieDTO) {
+        return modelMapper.map(movieDTO, Movie.class);
+    }
+
     /*
         MovieTheater
      */
