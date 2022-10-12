@@ -50,6 +50,13 @@ public class MovieListingController {
         return ResponseEntity.ok().body(DtoFactory.fromMovieListing(item.get()));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<MovieListingDTO> update(@Valid @RequestBody MovieListingDTO movieListingDTO, @PathVariable("id") Long id){
+        movieListingDTO.setId(id);
+        MovieListing movieListingItem = service.update(DtoFactory.fromMovieListingDTO(movieListingDTO));
+        return ResponseEntity.ok().body(DtoFactory.fromMovieListing(movieListingItem));
+    }
+
 }
 
 
