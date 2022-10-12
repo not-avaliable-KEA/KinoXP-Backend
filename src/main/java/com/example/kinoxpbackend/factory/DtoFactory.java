@@ -12,11 +12,9 @@ import com.example.kinoxpbackend.movieTheater.DTOs.MovieTheaterDTO;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
 import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,19 +90,24 @@ public class DtoFactory
         MovieListing
      */
 
-    public static MovieListingDTO fromMovieListing(MovieListing movieListing)
-    {
-        return modelMapper.map(movieListing, MovieListingDTO.class);
+    public static MovieListingDTO fromMovieListing(MovieListing movieListing) {
+        MovieListingDTO dto = modelMapper.map(movieListing, MovieListingDTO.class);
+
+        LocalDateTime timeUnformated = LocalDateTime.parse(dto.getDate());
+
+        dto.setDate(timeUnformated.format(formatter));
+
+        return dto;
     }
 
     public static List<MovieListingDTO> fromMovieListings(List<MovieListing> movieListings){
         return movieListings.stream()
-                .map(movieListing -> modelMapper.map(movieListing, MovieListingDTO.class))
+                .map(DtoFactory::fromMovieListing)
                 .collect(Collectors.toList());
     }
 
     public static MovieListing fromMovieListingDTO(MovieListingDTO movieListingDTO) {
-        // oprette ny tom movielisting
+        // oprette ny tom movieListing
         MovieListing movieListing = new MovieListing();
 
         // overføre id og date dertil.
