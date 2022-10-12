@@ -40,20 +40,14 @@ public class MovieListingController {
         return ResponseEntity.ok().body(DtoFactory.fromMovieListings(service.getAll()));
     }
 
-    @PatchMapping("{id}")
-    public ResponseEntity<MovieListing> update(@Valid @RequestBody MovieListing movieListing, @PathVariable("id") Long id){
-        movieListing.setId(id);
-        MovieListing movieListingItem = service.update(movieListing);
-        return ResponseEntity.ok().body(service.update(movieListingItem));
-    }
-
     @GetMapping("/{id}")
     //pathvariable = endpoint der identificerer en entity med en primary key.
-    public ResponseEntity<MovieListing> find(@PathVariable("id") long id) throws ResourceNotFoundException{
+    public ResponseEntity<MovieListingDTO> find(@PathVariable("id") long id) throws ResourceNotFoundException{
         //finder id
         Optional<MovieListing> item = service.get(id);
-        if(item.isEmpty())
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); return ResponseEntity.ok().body(item.get());
+        if(item.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+        return ResponseEntity.ok().body(DtoFactory.fromMovieListing(item.get()));
     }
 
 }
