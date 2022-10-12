@@ -24,7 +24,7 @@ public class MovieListing {
 
 
     @ManyToOne()
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 

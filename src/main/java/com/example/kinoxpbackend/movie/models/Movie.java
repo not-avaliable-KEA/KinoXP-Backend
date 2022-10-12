@@ -44,7 +44,7 @@ public class Movie {
     @Lob //get a long text in the DB
     private String description;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "movie")
     private List<MovieListing> movieListings;
 
