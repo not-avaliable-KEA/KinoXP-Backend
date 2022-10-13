@@ -45,7 +45,7 @@ public class Movie {
     private String description;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
     private List<MovieListing> movieListings;
 
     public Movie(String name, String genre, double length, String actors, String director, int ageLimit, String description) {

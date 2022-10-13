@@ -26,7 +26,7 @@ public class MovieTheater {
 
     @JsonBackReference
     //JSONbackreference tager ikke en listen med movielistings,
-    @OneToMany(mappedBy = "movieTheater")
+    @OneToMany(mappedBy = "movieTheater", cascade = CascadeType.REMOVE)
     private List<MovieListing> movieListings;
 
     public MovieTheater(String name, int numberOfRows, int numberOfSeats) {
