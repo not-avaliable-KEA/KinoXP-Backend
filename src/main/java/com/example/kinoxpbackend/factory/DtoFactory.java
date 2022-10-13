@@ -7,6 +7,7 @@ import com.example.kinoxpbackend.movie.DTOs.MovieDTO;
 import com.example.kinoxpbackend.movie.models.Movie;
 import com.example.kinoxpbackend.movie.services.MovieService;
 import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTO;
+import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTOTest;
 import com.example.kinoxpbackend.movieListing.models.MovieListing;
 import com.example.kinoxpbackend.movieTheater.DTOs.MovieTheaterDTO;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
@@ -132,5 +133,21 @@ public class DtoFactory
 
         //returnerer movielisting.
         return movieListing;
+    }
+    //cam test
+    public static MovieListingDTOTest fromMovieListingTest(MovieListing movieListing){
+        MovieListingDTOTest dto = modelMapper.map(movieListing, MovieListingDTOTest.class);
+
+        LocalDateTime timeUnformated = LocalDateTime.parse(dto.getDate());
+
+        dto.setDate(timeUnformated.format(formatter));
+
+        return dto;
+    }
+
+    public static List<MovieListingDTOTest> fromMovieListingsTest(List<MovieListing> movieListings){
+        return movieListings.stream()
+                .map(DtoFactory::fromMovieListingTest)
+                .collect(Collectors.toList());
     }
 }

@@ -3,6 +3,7 @@ package com.example.kinoxpbackend.movieListing.controllers;
 
 import com.example.kinoxpbackend.factory.DtoFactory;
 import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTO;
+import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTOTest;
 import com.example.kinoxpbackend.movieListing.models.MovieListing;
 import com.example.kinoxpbackend.movieListing.service.MovieListingService;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -60,6 +61,13 @@ public class MovieListingController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> update(@PathVariable("id") Long id){
         return ResponseEntity.ok().body(service.delete(id));
+    }
+
+    //cam test
+    @GetMapping("/test")
+    public ResponseEntity<List<MovieListingDTOTest>> test(){
+      return ResponseEntity.ok().body(DtoFactory.fromMovieListingsTest(service.getAll()));
+
     }
 
 }
