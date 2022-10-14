@@ -27,8 +27,8 @@ public class ReservationService {
         return repository.findAll();
     }
 
-    public Reservation update(Reservation reservation) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("update");
+    public Reservation update(Reservation reservation) {
+        return repository.save(reservation);
     }
 
     public boolean delete(Long id) {

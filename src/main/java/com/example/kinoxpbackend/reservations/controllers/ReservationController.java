@@ -44,9 +44,9 @@ public class ReservationController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Reservation> update(@Valid @RequestBody Reservation reservation, @PathVariable("id") Long id) throws ExecutionControl.NotImplementedException {
+    public ResponseEntity<Reservation> update(@Valid @RequestBody ReservationDTO reservation, @PathVariable("id") Long id) {
         reservation.setId(id);
-        return ResponseEntity.ok().body(service.update(reservation));
+        return ResponseEntity.ok().body(service.update(DtoFactory.fromReservationDTO(reservation)));
     }
 
     @DeleteMapping("/{id}")
