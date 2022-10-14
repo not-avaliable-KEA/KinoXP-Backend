@@ -1,8 +1,8 @@
 package com.example.kinoxpbackend.movieListing.service;
 
+import com.example.kinoxpbackend.factory.DtoFactory;
 import com.example.kinoxpbackend.movieListing.models.MovieListing;
 import com.example.kinoxpbackend.movieListing.repositories.MovieListingRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class MovieListingService {
 
-    @Autowired
     private MovieListingRepository repository;
+
+    public MovieListingService(MovieListingRepository repository) {
+        this.repository = repository;
+        DtoFactory.setMovieListingService(this);
+    }
 
     public MovieListing create(MovieListing movieListing){
         return repository.save(movieListing);

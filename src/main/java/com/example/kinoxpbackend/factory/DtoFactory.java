@@ -9,6 +9,7 @@ import com.example.kinoxpbackend.movie.services.MovieService;
 import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTO;
 import com.example.kinoxpbackend.movieListing.DTO.MovieListingDTOTest;
 import com.example.kinoxpbackend.movieListing.models.MovieListing;
+import com.example.kinoxpbackend.movieListing.service.MovieListingService;
 import com.example.kinoxpbackend.movieTheater.DTOs.MovieTheaterDTO;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
 import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
@@ -27,6 +28,8 @@ public class DtoFactory
 
     private static MovieTheaterService movieTheaterService;
 
+    private static MovieListingService movieListingService;
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
@@ -36,6 +39,10 @@ public class DtoFactory
 
     public static void setMovieTheaterService(MovieTheaterService movieTheaterService) {
         DtoFactory.movieTheaterService = movieTheaterService;
+    }
+
+    public static void setMovieListingService(MovieListingService movieListingService) {
+        DtoFactory.movieListingService = movieListingService;
     }
 
     /*
