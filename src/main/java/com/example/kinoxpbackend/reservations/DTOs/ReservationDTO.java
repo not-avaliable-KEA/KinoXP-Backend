@@ -8,6 +8,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ReservationDTO {
+
+    private long id;
+
     private String name;
 
     private int amountOfSeats;
