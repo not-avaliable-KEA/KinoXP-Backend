@@ -2,7 +2,6 @@ package com.example.kinoxpbackend.reservations.models;
 
 import com.example.kinoxpbackend.movieListing.models.MovieListing;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,4 +30,11 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "reservation_id")
     private MovieListing movieListing;
+
+    public Reservation(String name, int amountOfSeats, boolean meetsAgeRequirement, MovieListing movieListing) {
+        this.name = name;
+        this.amountOfSeats = amountOfSeats;
+        this.meetsAgeRequirement = meetsAgeRequirement;
+        this.movieListing = movieListing;
+    }
 }
