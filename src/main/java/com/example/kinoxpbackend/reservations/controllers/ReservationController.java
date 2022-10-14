@@ -1,5 +1,7 @@
 package com.example.kinoxpbackend.reservations.controllers;
 
+import com.example.kinoxpbackend.factory.DtoFactory;
+import com.example.kinoxpbackend.reservations.DTOs.ReservationDTO;
 import com.example.kinoxpbackend.reservations.models.Reservation;
 import com.example.kinoxpbackend.reservations.services.ReservationService;
 import jdk.jshell.spi.ExecutionControl;
@@ -22,24 +24,23 @@ public class ReservationController {
     ReservationService service;
 
     @PostMapping
-    public ResponseEntity<Reservation> create(@Valid @RequestBody Reservation reservation) {
-
-        return ResponseEntity.ok().body(service.create(reservation));
+    public ResponseEntity<Reservation> create(@Valid @RequestBody ReservationDTO reservationDTO) {
+        return ResponseEntity.ok().body(service.create(DtoFactory.fromReservationDTO(reservationDTO)));
     }
 
     @GetMapping
-    public ResponseEntity<List<Reservation>> findALl(){
-        return ResponseEntity.ok().body(service.getAll());
+    public ResponseEntity<List<ReservationDTO>> findALl(){
+        return ResponseEntity.ok().body(DtoFactory.fromReservations(service.getAll()));
     }
 
     @GetMapping("/{id}")
     //pathvariable = endpoint der identificerer en entity med en primary key.
-    public ResponseEntity<Reservation> find(@PathVariable("id") long id) throws ResourceNotFoundException {
+    public ResponseEntity<ReservationDTO> find(@PathVariable("id") long id) throws ResourceNotFoundException {
         //finder id
         Optional<Reservation> item = service.get(id);
         if(item.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 
-        return ResponseEntity.ok().body(item.get());
+        return ResponseEntity.ok().body(DtoFactory.fromReservation(item.get()));
     }
 
     @PatchMapping("/{id}")
