@@ -13,6 +13,8 @@ import com.example.kinoxpbackend.movieListing.service.MovieListingService;
 import com.example.kinoxpbackend.movieTheater.DTOs.MovieTheaterDTO;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
 import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
+import com.example.kinoxpbackend.reservations.DTOs.ReservationDTO;
+import com.example.kinoxpbackend.reservations.models.Reservation;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
@@ -46,8 +48,8 @@ public class DtoFactory
     }
 
     /*
-            Employees
-        */
+                Employees
+            */
     public static EmployeeDTO fromEmployee(Employee employee)
     {
         return modelMapper.map(employee, EmployeeDTO.class);
@@ -157,4 +159,31 @@ public class DtoFactory
                 .map(DtoFactory::fromMovieListingTest)
                 .collect(Collectors.toList());
     }
+
+    /*
+        Reservations
+     */
+    public static ReservationDTO fromReservation(Reservation reservation) {
+        return modelMapper.map(reservation, ReservationDTO.class);
+    }
+
+    public static List<ReservationDTO> fromReservations(List<Reservation> reservations){
+        return reservations.stream()
+                .map(reservation -> modelMapper.map(reservation, ReservationDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public static  Reservation fromReservationDTO(ReservationDTO reservationDTO) {
+        Reservation reservation = new Reservation();
+
+        reservation.setId(reservationDTO.getId());
+        reservation.setName(reservationDTO.getName());
+        reservation.setAmountOfSeats(reservationDTO.getAmountOfSeats());
+        reservation.setMeetsAgeRequirement(reservationDTO.isMeetsAgeRequirement());
+
+        reservation.setMovieListing(movieListingService.get(reservationDTO.getMovieListingId()).get());
+
+        return modelMapper.map(reservationDTO, Reservation.class);
+    }
+
 }
