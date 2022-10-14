@@ -64,9 +64,9 @@ public class MovieListingController {
     }
 
     //cam test
-    @GetMapping("/test")
-    public ResponseEntity<List<MovieListingDTOTest>> test(){
-      return ResponseEntity.ok().body(DtoFactory.fromMovieListingsTest(service.getAll()));
+    @GetMapping("/{id}/test")
+    public ResponseEntity<MovieListingDTOTest> test(@PathVariable("id") Long id){
+      return ResponseEntity.ok().body(DtoFactory.fromMovieListingTest(service.get(id).get()));
 
     }
 
