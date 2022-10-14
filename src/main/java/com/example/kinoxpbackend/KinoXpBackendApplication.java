@@ -8,6 +8,8 @@ import com.example.kinoxpbackend.movieListing.models.MovieListing;
 import com.example.kinoxpbackend.movieListing.service.MovieListingService;
 import com.example.kinoxpbackend.movieTheater.models.MovieTheater;
 import com.example.kinoxpbackend.movieTheater.services.MovieTheaterService;
+import com.example.kinoxpbackend.reservations.models.Reservation;
+import com.example.kinoxpbackend.reservations.services.ReservationService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +20,6 @@ import org.springframework.context.annotation.Bean;
 
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -122,17 +122,32 @@ public class KinoXpBackendApplication {
             log.info("Application ready");
         };
 
-    }
+    }*/
 
+    /*
     @Bean
-    public CommandLineRunner importDataFromMovieListings(MovieListingService movieListingServiceservice, MovieService movieService,
+    public CommandLineRunner importDataFromMovieListings(MovieListingService movieListingServiceservice,
+                                                         MovieService movieService,
                                                          MovieTheaterService movieTheaterService){
         return args -> {
 
-            movieListingServiceservice.create(new MovieListing(movieService.get(1).get(), movieTheaterService.get(1).get(), LocalDateTime.now()));
+            movieListingServiceservice.create(new MovieListing(movieService.get(1).get(), movieTheaterService.get(1).get(), LocalDateTime.now().plusDays(1)));
+
+        };
+    }*/
+
+    /*
+    @Bean
+    public CommandLineRunner importDataFromReservations(MovieListingService movieListingServiceservice,
+                                                        ReservationService reservationService){
+        return args -> {
+
+            reservationService.create(new Reservation("name", 1, true,
+                    movieListingServiceservice.get(1).get()));
 
         };
     }
+    */
 
- */
+
 }
