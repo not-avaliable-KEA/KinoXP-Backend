@@ -31,7 +31,7 @@ public class KinoXpBackendApplication {
         SpringApplication.run(KinoXpBackendApplication.class, args);
     }
 
-/*
+
     @Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
@@ -60,9 +60,9 @@ public class KinoXpBackendApplication {
 
             log.info("Application ready");
         };
-    }*/
+    }
 
-/*
+
  @Bean
     public CommandLineRunner importDataMovie(MovieService service) {
         return (args) -> {
@@ -95,14 +95,14 @@ public class KinoXpBackendApplication {
             log.info("Application ready");
 
         };
-    }*/
+    }
 
     @Bean
     public static ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
-    /*
+
    @Bean
     public CommandLineRunner importDataMovieTheatre(MovieTheaterService service) {
         return (args) -> {
@@ -122,9 +122,9 @@ public class KinoXpBackendApplication {
             log.info("Application ready");
         };
 
-    }*/
+    }
 
-    /*
+
     @Bean
     public CommandLineRunner importDataFromMovieListings(MovieListingService movieListingServiceservice,
                                                          MovieService movieService,
@@ -134,9 +134,9 @@ public class KinoXpBackendApplication {
             movieListingServiceservice.create(new MovieListing(movieService.get(1).get(), movieTheaterService.get(1).get(), LocalDateTime.now().plusDays(1)));
 
         };
-    }*/
+    }
 
-    /*
+
     @Bean
     public CommandLineRunner importDataFromReservations(MovieListingService movieListingServiceservice,
                                                         ReservationService reservationService){
@@ -147,7 +147,7 @@ public class KinoXpBackendApplication {
 
         };
     }
-    */
+
 
 
 }
