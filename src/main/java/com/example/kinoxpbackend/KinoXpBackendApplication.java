@@ -31,8 +31,12 @@ public class KinoXpBackendApplication {
         SpringApplication.run(KinoXpBackendApplication.class, args);
     }
 
-
     @Bean
+    public static ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
+    /*@Bean
     public CommandLineRunner importData(EmployeeService service) {
         return (args) -> {
 
@@ -60,10 +64,9 @@ public class KinoXpBackendApplication {
 
             log.info("Application ready");
         };
-    }
+    }*/
 
-
- @Bean
+ /*@Bean
     public CommandLineRunner importDataMovie(MovieService service) {
         return (args) -> {
 
@@ -95,15 +98,11 @@ public class KinoXpBackendApplication {
             log.info("Application ready");
 
         };
-    }
-
-    @Bean
-    public static ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
+    }*/
 
 
-   @Bean
+
+   /*@Bean
     public CommandLineRunner importDataMovieTheatre(MovieTheaterService service) {
         return (args) -> {
             service.create(new MovieTheater("Bio 1 ", 25, 16));
@@ -122,10 +121,10 @@ public class KinoXpBackendApplication {
             log.info("Application ready");
         };
 
-    }
+    }*/
 
 
-    @Bean
+    /*@Bean
     public CommandLineRunner importDataFromMovieListings(MovieListingService movieListingServiceservice,
                                                          MovieService movieService,
                                                          MovieTheaterService movieTheaterService){
@@ -134,10 +133,10 @@ public class KinoXpBackendApplication {
             movieListingServiceservice.create(new MovieListing(movieService.get(1).get(), movieTheaterService.get(1).get(), LocalDateTime.now().plusDays(1)));
 
         };
-    }
+    }*/
 
 
-    @Bean
+    /*@Bean
     public CommandLineRunner importDataFromReservations(MovieListingService movieListingServiceservice,
                                                         ReservationService reservationService){
         return args -> {
@@ -146,7 +145,7 @@ public class KinoXpBackendApplication {
                     movieListingServiceservice.get(1).get()));
 
         };
-    }
+    }*/
 
 
 
